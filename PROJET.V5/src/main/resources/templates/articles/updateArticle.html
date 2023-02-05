@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html layout:decorate="layout" xmlns:th="https://thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>Modifier article</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex justify-content-center">
+			<div class="container mx-5">
+				<div class="container my-2">
+					<h3>Modifier un article</h3>
+				</div>
+
+				<form th:action="@{/projetv4/articles/updateArticle/{id}(id=${articleAModifier.id})}"
+					th:object="${articleAModifier}" method="post">
+					<div class="container my-2 d-flex align-items-center">
+						<label style="margin-right: 10px;" for="categorie">Catégorie :</label>
+						<select id="categorie" th:field="*{categorie}">
+							<option th:each="category : ${categories}" th:value="${category.id}"
+								th:text="${category.nom}"></option>
+						</select>
+					</div>
+					<div class="container my-2">
+						<label for="denomination">Dénomination :</label>
+						<input type="text" th:field="*{denomination}" required="required" />
+					</div>
+					<div class="container my-2">
+						<label for="prix">Prix :</label>
+						<input type="number" min="0" step="0.01" th:field="*{prix}" required="required" />
+						<div th:if="${#fields.hasErrors('prix')}" th:errors="*{prix}">Prix non valide</div>
+					</div>
+					<div class="container my-2">
+						<label for="stock">Stock :</label>
+						<input type="number" min="0" th:field="*{stock}" required="required" />
+						<div th:if="${#fields.hasErrors('stock')}" th:errors="*{stock}">Stock non valide</div>
+					</div>
+					<div class="container my-2">
+						<label for="actif">Actif :</label>
+						<input type="checkbox" th:field="*{actif}" />
+					</div>
+					<div class="container my-2">
+						<input type="submit" value="Enregistrer" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

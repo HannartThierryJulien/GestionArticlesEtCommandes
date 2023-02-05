@@ -1,0 +1,83 @@
+@import "esthetique.css";
+
+body {
+	background-color: var(--couleur3);
+}
+
+h3 {
+	margin-top: 1em !important;
+	margin-bottom: 1em !important;
+}
+
+.btn {
+	background-color: var(--couleur2);
+	border-radius: 10px;
+}
+
+.btn:hover {
+	background-color: var(--couleur1);
+}
+
+.row-myTable {
+	background-color: var(--couleur4);
+	border-radius: 10px;
+	padding-top: 0.7em;
+	padding-bottom: 0.7em;
+}
+
+#myChart {
+	height: 50vh;
+	background-color: #F5EFE6;
+	border-radius: 10px !important;
+}
+
+
+/**********************************************
+LAYOUT.HTML  -->  navbar
+**********************************************/
+.navbar, .dropdown-menu {
+	background-color: var(--couleur2) !important;
+}
+
+.dropdown-menu a:hover {
+	background-color: var(--couleur2) !important;
+}
+
+.navbar-brand {
+	font-size: 1.32rem;
+}
+
+#navbarNav a {
+	font-size: 1.15em;
+}
+
+.dropdown-menu a:hover {
+	background-color: var(--couleur3) !important;
+}
+
+.dropdown-menu a:active {
+	color: black;
+}
+
+
+/**********************************************
+HOME.HTML
+**********************************************/
+.home {
+	height: 90vh;
+}
+
+.home h4 {
+	font-size: 3em;
+	margin-bottom: 0.5em;
+}
+
+.home h5 {
+	font-size: 2.5em;
+	margin-bottom: 0.5em;
+}
+
+.home p {
+	font-size: 2em;
+	margin-bottom: 0.5em;
+}

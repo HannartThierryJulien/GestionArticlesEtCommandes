@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html layout:decorate="layout" xmlns:th="https://thymeleaf.org"
+    xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+    <title>Ajouter commande</title>
+</head>
+
+<body>
+    <div layout:fragment="content">
+        <div class="d-flex justify-content-center">
+            <div class="container mx-5">
+                <div class="container my-2">
+                    <h3>Ajouter une commande</h3>
+                </div>
+
+                <form th:action="@{/projetv4/commandes/addCommande}" th:object="${commandes}" method="post">
+                    <div class="container my-2">
+                        <label for="nom">Nom :</label>
+                        <input type="text" th:field="*{nom}" required="required" />
+                    </div>
+                    <div class="container my-2">
+                        <label for="prenom">Prénom :</label>
+                        <input type="text" th:field="*{prenom}" required="required" />
+                    </div>
+                    <div class="container my-2">
+                        <label for="cloture">Commande clôturée :</label>
+                        <input type="checkbox" th:field="*{cloture}" />
+                    </div>
+                    <div class="container my-2">
+                        <input type="submit" value="Enregistrer" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

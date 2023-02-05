@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html layout:decorate="layout" xmlns:th="https://thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>Afficher commandes</title>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			mettreEnFormeTable();
+		});
+	</script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex justify-content-center">
+			<div class="container mx-5">
+				<div class="container">
+					<div class="row my-2">
+						<div class="container">
+							<h3>Afficher les commandes</h3>
+						</div>
+					</div>
+
+					<div class="row my-2">
+						<div class="container">
+							<a th:href="@{/projetv4/commandes/formAddCommande}" class="btn btn-sm float-end">Créer une
+								commande</a>
+						</div>
+					</div>
+
+					<div class="row my-2 row-myTable">
+						<table id="myTable">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nom</th>
+									<th>Prénom</th>
+									<th>Date</th>
+									<th>Clôturée</th>
+									<th>Supprimer</th>
+									<th>Détails</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="commande : ${commandes}">
+									<td th:text="${commande.id}"></td>
+									<td th:text="${commande.nom}"></td>
+									<td th:text="${commande.prenom}"></td>
+									<td th:text="${#temporals.format(commande.date, 'yyyy-MM-dd HH:mm')}"></td>
+									<td th:text="${commande.cloture}"></td>
+									<td>
+										<a th:attr="onclick=|msgConfirmationSupprimer('/projetv4/commandes/deleteCommande/', ${commande.id})|"
+											class="btn btn-sm">Supprimer</a>
+									</td>
+									<td>
+										<a th:href="@{'/projetv4/commandes/showCommandeDetaillee/' + ${commande.id}}"
+											class="btn btn-sm">Détails</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

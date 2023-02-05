@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html layout:decorate="layout" xmlns:th="https://thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>PieChart Articles commandés</title>
+	<!--Javascript Google Graphiques-->
+	<script src="https://www.gstatic.com/charts/loader.js"></script>
+	<!--Javascript lorsque la page est chargée-->
+	<script type="text/javascript">
+		$(document).ready(function () {
+			preparerGraph("barchart_NbrCommandesParCategories");
+		});
+	</script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex justify-content-center vh-80">
+			<div class="container mx-5">
+				<div class="container my-5">
+					<h3 class="text-center">Bar Chart - Nombre de commandes passées par catégorie</h3>
+					<div id="myChart"></div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

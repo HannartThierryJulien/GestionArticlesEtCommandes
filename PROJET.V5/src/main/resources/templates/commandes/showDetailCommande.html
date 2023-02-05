@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html layout:decorate="layout" xmlns:th="https://thymeleaf.org" xmlns:layout="https://www.w3.org/1999/xhtml"
+	xmlns:sec="https://www.thymeleaf.org/extras/spring-security">
+
+<head>
+	<title>Commande détaillée</title>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			mettreEnFormeTable();
+		});
+	</script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex justify-content-center">
+			<div class="container mx-5">
+				<div class="container">
+					<div class="row my-2">
+						<div class="container">
+							<h3>Afficher la commande détaillée</h3>
+						</div>
+					</div>
+
+					<div class="row my-2">
+						<div class="container">
+							<p>Id de la commande : <span th:text="${commande.id}"></span></p>
+							<p>Date : <span th:text="${#temporals.format(commande.date, 'yyyy-MM-dd HH:mm')}"></span></p>
+							<p>Nom : <span th:text="${commande.nom}"></span></p>
+							<p>Prénom : <span th:text="${commande.prenom}"></span></p>
+							<p>Cloture : <span th:text="${commande.cloture}"></span></p>
+							<p>Prix total : <span th:text="${prixTotalCommande}"></span> €</p>
+						</div>
+					</div>
+
+					<div class="row my-2">
+						<div class="col-6">
+							<a th:href="@{/projetv4/commandes/formModifyCommande/{id}(id=${commande.id})}"
+								class="btn btn-sm float-start">Modifier la commande</a>
+						</div>
+						<div class="col-6">
+							<a th:href="@{/projetv4/commandes/showArticlesCommandables/{id}(id=${commande.id})}"
+								class="btn btn-sm float-end">Commander un article</a>
+						</div>
+					</div>
+
+					<div class="row my-2 row-myTable">
+						<table id="myTable">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Catégorie</th>
+									<th>Dénomination</th>
+									<th>Quantite</th>
+									<th>Prix</th>
+									<th>Supprimer</th>
+									<th>Diminuer</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="listeArticle : ${articlesDeLaCommande}">
+									<td th:text="${listeArticle.article.id}"></td>
+									<td th:text="${listeArticle.article.categorie.nom}"></td>
+									<td th:text="${listeArticle.article.denomination}"></td>
+									<td th:text="${listeArticle.quantite}"></td>
+									<td th:text="${listeArticle.prixActuel}"></td>
+									<td>
+										<a th:attr="onclick=|msgConfirmationSupprimer('/projetv4/listesArticle/deleteListeArticle/', ${listeArticle.id})|"
+											class="btn btn-sm">Supprimer</a>
+									</td>
+									<td>
+										<a th:href="@{'/projetv4/commandes/formDiminuerQtyArticleCommande/' + ${listeArticle.id}}"
+											class="btn btn-sm">Diminuer</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

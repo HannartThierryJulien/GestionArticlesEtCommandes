@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html layout:decorate="layout" xmlns:th="https://thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>Commander article</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex justify-content-center">
+			<div class="container mx-5">
+				<div class="container my-2">
+					<h3>Commander un article</h3>
+				</div>
+
+				<form
+					th:action="@{/projetv4/commandes/commanderArticle/{commandeId}/{articleId}(commandeId=${commandeId}, articleId=${article.id})}"
+					method="post">
+					<div class="row my-2">
+						<div class="container">
+							<p>Id : <span th:text="${article.id}"></span></p>
+							<p>Catégorie : <span th:text="${article.categorie.nom}"></span></p>
+							<p>Dénomination : <span th:text="${article.denomination}"></span></p>
+							<p>Prix : <span th:text="${article.prix}"></span> €</p>
+							<p>Stock : <span th:text="${article.stock}"></span></p>
+						</div>
+					</div>
+					<div class="container my-2">
+						<div th:if="${errorMessage}" class="alert alert-danger" th:text="${errorMessage}"></div>
+						<label for="quantite">Quantité :</label><br>
+						<input type="number" id="quantite" name="quantite" th:min="1" th:max="${article.stock}"
+							required="required">
+					</div>
+					<div class="container my-2">
+						<input type="submit" value="Commander" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

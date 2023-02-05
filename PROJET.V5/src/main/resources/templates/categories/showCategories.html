@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html layout:decorate="layout" xmlns:th="https://thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>Afficher catégories</title>
+	<script type="text/javascript">
+		$(document).ready(function () {
+			mettreEnFormeTable();
+		});
+	</script>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex justify-content-center">
+			<div class="container mx-5">
+				<div class="container">
+					<div class="row my-2">
+						<div class="container">
+							<h3>Afficher les catégories</h3>
+						</div>
+					</div>
+
+					<div class="row my-2">
+						<div class="container">
+							<a th:href="@{/projetv4/categories/formAddCategorie}" class="btn btn-sm float-end">Créer une
+								catégorie</a>
+						</div>
+					</div>
+
+					<div class="row my-2 row-myTable">
+						<table id="myTable">
+							<thead>
+								<tr>
+									<th>ID</th>
+									<th>Nom</th>
+									<th>Actif</th>
+									<th>Supprimer</th>
+									<th>Modifier</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="categorie : ${categories}">
+									<td th:text="${categorie.id}"></td>
+									<td th:text="${categorie.nom}"></td>
+									<td th:text="${categorie.actif}"></td>
+									<td>
+										<a th:attr="onclick=|msgConfirmationSupprimer('/projetv4/categories/deleteCategorie/', ${categorie.id})|"
+											class="btn btn-sm">Supprimer</a>
+									</td>
+									<td>
+										<a th:href="@{'/projetv4/categories/formModifyCategorie/' + ${categorie.id}}"
+											class="btn btn-sm">Modifier</a>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>

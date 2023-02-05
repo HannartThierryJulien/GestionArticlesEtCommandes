@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html layout:decorate="layout" xmlns:th="https://thymeleaf.org"
+	xmlns:layout="https://www.ultraq.net.nz/thymeleaf/layout">
+
+<head>
+	<title>UpdateCommande</title>
+</head>
+
+<body>
+	<div layout:fragment="content">
+		<div class="d-flex justify-content-center">
+			<div class="container mx-5">
+				<div class="container my-2">
+					<h3>Modification de la commande</h3>
+				</div>
+
+				<form action="#" th:action="@{/projetv4/commandes/updateCommande/{id}(id=${commandeAModifier.id})}"
+					th:object="${commandeAModifier}" method="post">
+					<div class="container my-2">
+						<label for="id">Id de la commande :</label>
+						<input type="text" th:field="*{id}" disabled="disabled" />
+					</div>
+					<div class="container my-2">
+						<label for="nom">Nom de la commande :</label>
+						<input type="text" th:field="*{nom}" required="required" />
+					</div>
+					<div class="container my-2">
+						<label for="prenom">Prénom de la commande :</label>
+						<input type="text" th:field="*{prenom}" required="required" />
+					</div>
+					<div class="container my-2">
+						<label for="date">Date de la commande :</label>
+						<input type="text" th:field="*{date}" readonly="readonly"
+							th:value="${commandeAModifier.date}" />
+					</div>
+					<div class="container my-2">
+						<label for="cloture">Clôture de la commande :</label>
+						<input type="checkbox" th:field="*{cloture}" />
+					</div>
+					<div class="container my-2">
+						<input type="submit" value="Enregistrer" />
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+</body>
+
+</html>
